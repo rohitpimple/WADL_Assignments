@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>4</title>
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-K6KLZ7f/EX55mjMVRPOu+Q5stI+5w9g4g8+hnYxSB1IdT9J+6ZgNvylrP+2bmUOs" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <style>
+        #container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            margin-top: 80px;
+            margin-left: 500px;
+            padding: 20px;
+            background-color: grey;
+        }
+        #container-1{
+            position: relative;
+            width: 150px;
+            height: 150px;
+            /* display: flex; */
+            /* justify-content: center;
+            align-items: center; */
+            padding: 10px;
+            background-color: beige;
+        }
+        #container-2 {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            margin: 10;
+        }
+        #image {
+            position: absolute;
+            top: 305px;
+            left: 78px;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+        }
+        .arrow {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            color: #fff;
+            background-color: #007bff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+        }
+        #top {
+            left: 60px;
+        }
+        #bottom {
+            top: 110px;
+            left: 60px;
+        }
+        #left {
+            top: 60px;
+        }
+        #right {
+            top: 60px;
+            left: 110px;
+        }
+        #start {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            /* margin: auto; */
+            /* padding: 20px; */
+            border-radius: 100%;
+            background-color: red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 230px;
+        }
+        #checkpt-1{
+            position: relative;
+            width: 60px;
+            height: 50px;
+            /* margin: auto; */
+            /* padding: 20px; */
+            border-radius: 20%;
+            background-color: rgb(39, 211, 39);
+            display: flex;
+            padding-left: 15px;
+            justify-content: center;
+            align-items: center;
+            top: 180px;
+            left: 420px;
+        }
+        #checkpt-2{
+            position: relative;
+            width: 60px;
+            height: 50px;
+            /* margin: auto; */
+            /* padding: 20px; */
+            border-radius: 20%;
+            background-color: rgb(39, 211, 39);
+            display: flex;
+            padding-left: 15px;
+            justify-content: center;
+            align-items: center;
+            left: 420px;
+            top: -320px;
+        }
+        #checkpt-3{
+            position: relative;
+            width: 60px;
+            height: 50px;
+            /* margin: auto; */
+            /* padding: 20px; */
+            border-radius: 20%;
+            background-color: rgb(39, 211, 39);
+            display: flex;
+            padding-left: 15px;
+            justify-content: center;
+            align-items: center;
+            top: -370px;
+            left: 200px;
+        }
+        #end{
+            position: relative;
+            width: 50px;
+            height: 50px;
+            /* margin: auto; */
+            /* padding: 20px; */
+            border-radius: 100%;
+            background-color: red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: -100px;
+            left: 210px;
+        }
+    </style>
+</head>    
+<body>
+
+<div data-role="page">
+    <div data-role="content">
+        <div id="container">
+            <div id = "container-1">
+                <div id="top" class="arrow">&#9650;</div>
+                <div id="bottom" class="arrow">&#9660;</div>
+                <div id="left" class="arrow">&#9668;</div>
+                <div id="right" class="arrow">&#9658;</div>
+            </div>
+            <div id="container-2">
+                <img id="image" src="hero-image.jpg" alt="Image">
+            </div>
+            <div id="start">
+                <p>Start</p>
+            </div>
+            <div id="checkpt-1">
+                <p>Check Point 1</p>
+            </div>
+            <div id="checkpt-2">
+                <p>Check Point 2</p>
+            </div>
+            <div id="checkpt-3">
+                <p>Check Point 3</p>
+            </div>
+            <div id="end">
+                <p>End</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('.arrow').click(function() {
+            var direction = $(this).attr('id'); 
+            moveImage(direction);
+        });
+    });
+
+    function moveImage(direction) {
+        var image = $('#image');
+        var currentPosition = image.position();
+        var containerWidth = $('#container').width();
+        var containerHeight = $('#container').height();
+        var imageWidth = image.width();
+        var imageHeight = image.height();
+
+        switch (direction) {
+            case 'right':
+                currentPosition.left +=50;
+                image.css('left', currentPosition.left);
+                break;
+            case 'left':
+                currentPosition.left -=50;
+                image.css('left', currentPosition.left);
+                break;
+            case 'top':
+                currentPosition.top -=50;
+                image.css('top', currentPosition.top);
+                break;
+            case 'bottom':
+                currentPosition.top +=50;
+                image.css('top', currentPosition.top);
+                break;
+        }
+        // image.css('left', currentPosition.left);
+        // image.css('top', currentPosition.top);
+    }
+</script>
+
+</body>
+</html>
